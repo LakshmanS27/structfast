@@ -1,0 +1,47 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Test and coverage artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# uv local cache
+.uv-cache/
+
+# Packaging / build outputs
+build/
+dist/
+site/
+.eggs/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+
+# Tool caches
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.tox/
+.nox/
+
+# Local runtime files
+*.log
+
+# Local generated sandbox used for manual CLI testing
+sandbox/

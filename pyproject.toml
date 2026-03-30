@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "structify"
+version = "0.1.0"
+description = "Turn text-based folder trees into real directories and files."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+  { name = "OpenAI Codex" }
+]
+keywords = ["cli", "filesystem", "scaffolding", "tree", "automation"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: Utilities"
+]
+dependencies = [
+  "typer>=0.12,<1.0",
+  "rich>=13.7,<14.0",
+  "pyperclip>=1.9,<2.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9.0"
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.0,<9.0"
+]
+
+[project.scripts]
+structify = "structify.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/example/structify"
+Repository = "https://github.com/example/structify"
+Issues = "https://github.com/example/structify/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.uv]
+package = true
+default-groups = ["dev"]
