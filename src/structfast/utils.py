@@ -10,7 +10,7 @@ from structfast.exceptions import ClipboardError
 MARKDOWN_FENCE = "```"
 TREE_PREFIX_RE = re.compile(r"^(?:[|│ ]{0,4}(?:[|│][ ]{3}|[ ]{4})|(?:[|│]?\s*))*(?:[├└+\\]?[─-]{2,}\s*)")
 LEADING_BULLET_RE = re.compile(r"^(\s*)(?:[-*+]|\d+\.)\s+")
-INLINE_COMMENT_RE = re.compile(r"\s+#.*$")
+INLINE_COMMENT_RE = re.compile(r"\s+#(?=\s).*$")
 MARKDOWN_BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
 MARKDOWN_CODE_RE = re.compile(r"`(.+?)`")
 

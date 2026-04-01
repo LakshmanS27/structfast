@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "structfast"
-version = "0.1.0"
+version = "0.1.1"
 description = "Turn text-based folder trees into real directories and files."
 readme = "README.md"
 license = "MIT"

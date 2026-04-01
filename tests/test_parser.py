@@ -109,3 +109,55 @@ def test_parse_handles_partial_markdown_and_or_alternatives() -> None:
         ("pyproject.toml", "file", 1),
         ("data_analyzer_agent", "dir", 1),
     ]
+
+
+def test_parse_keeps_hash_in_real_file_names() -> None:
+    text = """
+    project/
+    â”œâ”€â”€ C#.md
+    â””â”€â”€ sprint#1.txt
+    """
+    nodes = parse_structure(text)
+    assert [(node.name, node.type, node.depth) for node in nodes] == [
+        ("project", "dir", 0),
+        ("C#.md", "file", 1),
+        ("sprint#1.txt", "file", 1),
+    ]
+
+
+def test_parse_project_template_with_inline_comments() -> None:
+    text = """
+    my-random-project/
+    â”œâ”€â”€ data/               # Raw and processed data files (if applicable)
+    â”œâ”€â”€ docs/               # Project documentation (markdown, diagrams)
+    â”œâ”€â”€ src/                # Main source code folder
+    â”‚   â”œâ”€â”€ components/     # UI components or logical modules
+    â”‚   â”œâ”€â”€ services/       # Business logic
+    â”‚   â”œâ”€â”€ utils/          # Helper functions/scripts
+    â”‚   â””â”€â”€ main.py         # Entry point of the application
+    â”œâ”€â”€ tests/              # Unit and integration tests
+    â”œâ”€â”€ config/             # Configuration files
+    â”œâ”€â”€ scripts/            # Deployment or maintenance scripts
+    â”œâ”€â”€ .gitignore          # Files to exclude from Git
+    â”œâ”€â”€ README.md           # Project description and setup instructions
+    â”œâ”€â”€ requirements.txt    # Dependencies (or package.json/go.mod)
+    â””â”€â”€ Dockerfile          # Containerization file
+    """
+    nodes = parse_structure(text)
+    assert [(node.name, node.type, node.depth) for node in nodes] == [
+        ("my-random-project", "dir", 0),
+        ("data", "dir", 1),
+        ("docs", "dir", 1),
+        ("src", "dir", 1),
+        ("components", "dir", 2),
+        ("services", "dir", 2),
+        ("utils", "dir", 2),
+        ("main.py", "file", 2),
+        ("tests", "dir", 1),
+        ("config", "dir", 1),
+        ("scripts", "dir", 1),
+        (".gitignore", "file", 1),
+        ("README.md", "file", 1),
+        ("requirements.txt", "file", 1),
+        ("Dockerfile", "file", 1),
+    ]
